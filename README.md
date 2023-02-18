@@ -10,4 +10,4 @@ Home Test Rahmatullah Ashar, Terdiri dari 3 halaman (home, detail, portfolio)
 
 ## Authors
 
-- [@Rahmatullah ashar](https://www.github.com/octokatherine)
+- [@Rahmatullah ashar](https://rahmatullahashar.my.id)
