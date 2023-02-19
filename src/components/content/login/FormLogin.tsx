@@ -1,45 +1,12 @@
 import React, { useContext, useReducer, useState } from "react";
+import {
+  emailReducer,
+  passwordReducer,
+} from "../../../reducers/loginReducer/loginReducer";
 import { AuthContext } from "../../../store/auth-context";
 import { ButtonSubmit } from "../../UI/buttonSubmit/buttonSubmit";
-import { Checkbox } from "../../UI/checkbox/checkbox";
 import { InputText } from "../../UI/inputText/inputText";
 import { Loading } from "../../UI/loading/loading";
-
-interface EmailState {
-  value: string;
-  isValid: boolean | null;
-}
-
-type EmailAction = { type: "USER_INPUT"; val: string } | { type: "INPUT_BLUR" };
-
-function emailReducer(state: EmailState, action: EmailAction) {
-  if (action.type === "USER_INPUT") {
-    return { value: action.val, isValid: action.val.includes("@") };
-  }
-  if (action.type === "INPUT_BLUR") {
-    return { value: state.value, isValid: state.value.includes("@") };
-  }
-  return { value: "", isValid: null };
-}
-
-interface PasswordState {
-  value: string;
-  isValid: boolean | null;
-}
-
-type PasswordAction =
-  | { type: "USER_INPUT"; val: string }
-  | { type: "INPUT_BLUR" };
-
-const passwordReducer = (state: PasswordState, action: PasswordAction) => {
-  if (action.type === "USER_INPUT") {
-    return { value: action.val, isValid: action.val.trim().length > 6 };
-  }
-  if (action.type === "INPUT_BLUR") {
-    return { value: state.value, isValid: state.value.trim().length > 6 };
-  }
-  return { value: "", isValid: null };
-};
 
 export const FormLogin = () => {
   // context
@@ -73,19 +40,19 @@ export const FormLogin = () => {
     setFormIsValid(emailState.isValid && event.target.value.trim().length > 6);
   };
 
-  const validateEmailHandler = () => {
-    dispatchEmail({
-      type: "INPUT_BLUR",
-    });
+  const validateLoginHandler = (input: string) => {
+    if (input === "email") {
+      dispatchEmail({
+        type: "INPUT_BLUR",
+      });
+    } else if (input === "password") {
+      dispatchPassword({
+        type: "INPUT_BLUR",
+      });
+    }
   };
 
-  const validatePasswordHandler = () => {
-    dispatchPassword({
-      type: "INPUT_BLUR",
-    });
-  };
-
-  const handleOnSubmit = (e: any) => {
+  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     setTimeout(() => {
@@ -109,11 +76,11 @@ export const FormLogin = () => {
       <form className="flex  flex-col space-y-4 " onSubmit={handleOnSubmit}>
         <InputText
           placeHolder="Email"
-          type="text"
+          type="email"
           handleOnChange={emailChangeHandler}
           name={"inputEmail"}
           value={emailState.value}
-          handleOnBlur={validateEmailHandler}
+          handleOnBlur={() => validateLoginHandler("email")}
           className={emailState.isValid === false ? "bg-red-200" : ""}
         />
         <InputText
@@ -122,10 +89,9 @@ export const FormLogin = () => {
           handleOnChange={passwordChangeHandler}
           name={"inputPassword"}
           value={passwordState.value}
-          handleOnBlur={validatePasswordHandler}
+          handleOnBlur={() => validateLoginHandler("password")}
           className={passwordState.isValid === false ? "bg-red-200" : ""}
         />
-        <Checkbox />
         <ButtonSubmit disable={!formIsValid}>Login</ButtonSubmit>
       </form>
     </div>
