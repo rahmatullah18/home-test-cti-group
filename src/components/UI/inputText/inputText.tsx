@@ -1,4 +1,3 @@
-import React from "react";
 import { TypePropsInput } from "./inputTextProps";
 
 export const InputText = ({
@@ -7,6 +6,8 @@ export const InputText = ({
   className,
   type,
   placeHolder,
+  name,
+  handleOnBlur,
 }: TypePropsInput) => {
   return (
     <input
@@ -15,6 +16,8 @@ export const InputText = ({
       placeholder={placeHolder}
       onChange={handleOnChange}
       value={value}
+      name={name}
+      onBlur={handleOnBlur}
     />
   );
 };

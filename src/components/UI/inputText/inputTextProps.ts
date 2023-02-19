@@ -6,4 +6,6 @@ export type TypePropsInput = {
   className?: string;
   type: string;
   placeHolder: string;
+  name?: string;
+  handleOnBlur?: () => void;
 };

@@ -1,15 +1,15 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../store/auth-context";
 import { Navbarlist } from "./navbarList/navbarlist";
 
 export const Navbar = () => {
+  const ctxAuth = useContext(AuthContext);
   const navigate = useNavigate();
-  const handleLogout = () => {
-    console.log("logout");
-  };
   const navLists = [
     { id: 1, title: "Home", handleFunction: () => navigate("/") },
     { id: 2, title: "Portfolio", handleFunction: () => navigate("/portfolio") },
-    { id: 3, title: "Logout", handleFunction: handleLogout },
+    { id: 3, title: "Logout", handleFunction: ctxAuth.onLogout },
   ];
 
   return (
