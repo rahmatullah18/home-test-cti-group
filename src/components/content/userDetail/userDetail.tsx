@@ -1,4 +1,4 @@
-import React from "react";
+import { Back } from "../../UI/back/back";
 import { Title } from "../../UI/title/title";
 import { TypePropsUser } from "./TypeUser";
 
@@ -9,15 +9,18 @@ export const UserDetail = ({ user }: TypePropsUser) => {
         <img
           src={`${user?.picture.large}`}
           alt={user?.name.first}
-          className="rounded-lg shadow-md"
+          className="rounded-lg shadow-md w-40 h-40"
         />
       </div>
-      <div className="space-y-2 text-center">
-        <Title>
-          {user?.name.first} {user?.name.last}
-        </Title>
-        <p className="text-primary2 text-lg">{user?.gender}</p>
-        <p className="text-primary2 text-lg">{user?.email}</p>
+      <div className=" text-center ">
+        <div className="mb-5">
+          <Title>
+            {user?.name.first} {user?.name.last}
+          </Title>
+          <p className="text-primary2 text-lg">{user?.gender}</p>
+          <p className="text-primary2 text-lg">{user?.email}</p>
+        </div>
+        <Back url="/" />
       </div>
     </div>
   );
