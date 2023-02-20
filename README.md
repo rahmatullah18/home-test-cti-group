@@ -4,7 +4,7 @@ Home Test Rahmatullah Ashar, Terdiri dari 4 halaman (login, home, detail, portfo
 
 ## Tech Stack
 
-**Client:** React, React Context, React Router Dom TypeScript, React Testing Library, TailwindCSS
+**Client:** TypeScript, React, React Context, React Router Dom, React Testing Library, TailwindCSS
 
 **Server:** https://randomuser.me/
 
@@ -43,3 +43,7 @@ Login
   email: admin@gmail.com
   password: admin123
 ```
+
+## Demo Aplikasi
+
+https://home-test-cti-group.vercel.app/login
