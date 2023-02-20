@@ -1,66 +1,51 @@
-import React from "react";
+import { TypePropsTableUsers } from "./typePropsTableUsers";
+import { Link } from "react-router-dom";
 
-export const TableUser = () => {
+const headTable = ["Id", "nama", "email", "gender", "action"];
+
+export const TableUser = ({ users }: TypePropsTableUsers) => {
+  const mapHeadTable = headTable.map((data, idx) => (
+    <th
+      key={idx}
+      scope="col"
+      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+    >
+      {data}
+    </th>
+  ));
+
+  const mapDataTable = users.map((data) => {
+    const { id, gender, email, name, login } = data;
+    return (
+      <tr
+        className="bg-gray-100 border-b"
+        key={`${name.first}${id.name}${id.value}`}
+      >
+        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+          {id.name ? id.name : "SS"}
+        </td>
+        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+          {name.first} {name.last}
+        </td>
+        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+          {email}
+        </td>
+        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+          {gender}
+        </td>
+        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+          <Link to={`/user-detail/${login?.uuid}`}>detail</Link>
+        </td>
+      </tr>
+    );
+  });
+
   return (
     <table className="overflow-auto table rounded-lg">
       <thead className="bg-white border-b">
-        <tr>
-          <th
-            scope="col"
-            className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-          >
-            #
-          </th>
-          <th
-            scope="col"
-            className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-          >
-            First
-          </th>
-          <th
-            scope="col"
-            className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-          >
-            Last
-          </th>
-          <th
-            scope="col"
-            className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-          >
-            Handle
-          </th>
-        </tr>
+        <tr>{mapHeadTable}</tr>
       </thead>
-      <tbody>
-        <tr className="bg-gray-100 border-b">
-          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            1
-          </td>
-          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-            Mark
-          </td>
-          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-            Otto
-          </td>
-          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-            @mdo
-          </td>
-        </tr>
-        <tr className="bg-white border-b">
-          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            2
-          </td>
-          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-            Jacob
-          </td>
-          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-            Dillan
-          </td>
-          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-            @fat
-          </td>
-        </tr>
-      </tbody>
+      <tbody>{mapDataTable}</tbody>
     </table>
   );
 };

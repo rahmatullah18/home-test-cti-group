@@ -4,6 +4,7 @@ import { Home } from "./page/home";
 import { Login } from "./page/login";
 import { Portfolio } from "./page/portfolio";
 import { LoginMiddleware } from "./components/middleware/loginMiddleware/loginMiddleware";
+import { UserDetail } from "./page/userDetail";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/portfolio" element={<Portfolio />}></Route>
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />} />
+          <Route path="/user-detail/:userId" element={<UserDetail />} />
         </Routes>
       </LoginMiddleware>
     </Container>
