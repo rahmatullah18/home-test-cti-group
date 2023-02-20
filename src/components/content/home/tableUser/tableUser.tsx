@@ -17,10 +17,7 @@ export const TableUser = ({ users }: TypePropsTableUsers) => {
   const mapDataTable = users.map((data) => {
     const { id, gender, email, name, login } = data;
     return (
-      <tr
-        className="bg-gray-100 border-b"
-        key={`${name.first}${id.name}${id.value}`}
-      >
+      <tr className="bg-gray-100 border-b" key={`${name.first}${id.name}`}>
         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
           {id.name ? id.name : "SS"}
         </td>
@@ -41,11 +38,17 @@ export const TableUser = ({ users }: TypePropsTableUsers) => {
   });
 
   return (
-    <table className="overflow-auto table rounded-lg">
-      <thead className="bg-white border-b">
-        <tr>{mapHeadTable}</tr>
-      </thead>
-      <tbody>{mapDataTable}</tbody>
-    </table>
+    <div className="overflow-x-scroll">
+      {users.length > 0 ? (
+        <table className=" table rounded-lg w-full">
+          <thead className="bg-white border-b">
+            <tr>{mapHeadTable}</tr>
+          </thead>
+          <tbody>{mapDataTable}</tbody>
+        </table>
+      ) : (
+        <div className="text-center text-primary2">Data tidak ditemukan</div>
+      )}
+    </div>
   );
 };

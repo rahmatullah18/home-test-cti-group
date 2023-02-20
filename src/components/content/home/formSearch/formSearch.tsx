@@ -1,16 +1,14 @@
-import React from "react";
-import { ButtonSubmit } from "../../../UI/buttonSubmit/buttonSubmit";
 import { InputText } from "../../../UI/inputText/inputText";
+import { TypePropsFormSearch } from "./typePropsFormSearch";
 
-export const FormSearch = () => {
+export const FormSearch = ({ value, handleOnChange }: TypePropsFormSearch) => {
   return (
-    <form className="grid grid-cols-4 space-x-1">
-      <InputText
-        type="text"
-        placeHolder="Cari user"
-        className="w-40 col-span-3"
-      />
-      <ButtonSubmit className="w-16">Cari</ButtonSubmit>
-    </form>
+    <InputText
+      value={value}
+      handleOnChange={handleOnChange}
+      type="text"
+      placeHolder="Cari user"
+      className="w-40 col-span-3"
+    />
   );
 };
