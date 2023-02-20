@@ -1,6 +1,6 @@
 # Take Home Test X CTI Group Rahmatullah Ashar
 
-Home Test Rahmatullah Ashar, Terdiri dari 3 halaman (home, detail, portfolio)
+Home Test Rahmatullah Ashar, Terdiri dari 4 halaman (login, home, detail, portfolio)
 
 ## Tech Stack
 
