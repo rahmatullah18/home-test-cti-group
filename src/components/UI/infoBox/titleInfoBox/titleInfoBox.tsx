@@ -9,11 +9,11 @@ export const TitleInfoBox = ({
   handleOpen,
 }: TypePropsTitleInfoBox) => {
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex items-center justify-between lg:justify-start lg:space-x-4">
       <Title>{title}</Title>
       <button
         onClick={handleOpen}
-        className="text-secondary2 underline text-lg"
+        className="text-lg underline text-secondary2"
       >
         {isOpen ? <ScrollDown width={35} height={35} /> : desc}
       </button>

@@ -8,7 +8,7 @@ export const FormSearch = ({ value, handleOnChange }: TypePropsFormSearch) => {
       handleOnChange={handleOnChange}
       type="text"
       placeHolder="Cari user"
-      className="w-40 col-span-3"
+      className="w-full col-span-3 md:w-60"
     />
   );
 };

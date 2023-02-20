@@ -9,12 +9,17 @@ export const Navbar = () => {
   const navLists = [
     { id: 1, title: "Home", handleFunction: () => navigate("/") },
     { id: 2, title: "Portfolio", handleFunction: () => navigate("/portfolio") },
-    { id: 3, title: "Logout", handleFunction: ctxAuth.onLogout },
   ];
 
   return (
-    <nav className=" p-4 w-full  bg-secondary3">
+    <nav className="flex items-center justify-between w-full p-4 bg-secondary3">
       <Navbarlist lists={navLists} />
+      <button
+        onClick={ctxAuth.onLogout}
+        className="text-lg font-semibold text-primary2 hover:text-secondary1"
+      >
+        Logout
+      </button>
     </nav>
   );
 };

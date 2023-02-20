@@ -6,7 +6,7 @@ export const Back = ({ url }: TypePropBack) => {
   return (
     <Link
       to={url}
-      className="text-secondary3 text-lg bg-secondary1 w-fit px-4 py-1 rounded-lg"
+      className="px-4 py-1 text-lg rounded-lg text-secondary3 md:text-2xl bg-secondary1 w-fit"
     >
       Kembali
     </Link>

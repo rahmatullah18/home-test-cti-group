@@ -71,9 +71,9 @@ export const FormLogin = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       {isLoading && <Loading />}
-      <form className="flex  flex-col space-y-4 " onSubmit={handleOnSubmit}>
+      <form className="flex flex-col space-y-4 " onSubmit={handleOnSubmit}>
         <InputText
           placeHolder="Email"
           type="email"

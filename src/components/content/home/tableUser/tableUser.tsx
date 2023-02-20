@@ -8,7 +8,7 @@ export const TableUser = ({ users }: TypePropsTableUsers) => {
     <th
       key={idx}
       scope="col"
-      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+      className="px-6 py-4 text-sm font-medium text-left text-gray-900"
     >
       {data}
     </th>
@@ -18,20 +18,20 @@ export const TableUser = ({ users }: TypePropsTableUsers) => {
     const { id, gender, email, name, login } = data;
     return (
       <tr className="bg-gray-100 border-b" key={`${name.first}${id.name}`}>
-        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+        <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
           {id.name ? id.name : "SS"}
         </td>
-        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+        <td className="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
           {name.first} {name.last}
         </td>
-        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+        <td className="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
           {email}
         </td>
-        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+        <td className="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
           {gender}
         </td>
-        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-          <Link to={`/user-detail/${login?.uuid}`}>detail</Link>
+        <td className="px-6 py-4 text-sm font-light text-gray-900 underline whitespace-nowrap">
+          <Link to={`/user-detail/${login?.uuid}`}>Detail</Link>
         </td>
       </tr>
     );
@@ -40,7 +40,7 @@ export const TableUser = ({ users }: TypePropsTableUsers) => {
   return (
     <div className="overflow-x-scroll">
       {users.length > 0 ? (
-        <table className=" table rounded-lg w-full">
+        <table className="table w-full ">
           <thead className="bg-white border-b">
             <tr>{mapHeadTable}</tr>
           </thead>

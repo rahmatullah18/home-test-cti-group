@@ -3,7 +3,7 @@ import { TypePropsTitle } from "./title.test";
 
 export const Title = ({ children }: TypePropsTitle) => {
   return (
-    <h1 className="font-semibold text-2xl text-secondary1 uppercase">
+    <h1 className="text-xl font-semibold uppercase md:text-3xl text-secondary1">
       {children}
     </h1>
   );
