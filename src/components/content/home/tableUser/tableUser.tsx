@@ -1,5 +1,5 @@
 import { TypePropsTableUsers } from "./typePropsTableUsers";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const headTable = ["Id", "nama", "email", "gender", "action"];
 
@@ -31,7 +31,8 @@ export const TableUser = ({ users }: TypePropsTableUsers) => {
           {gender}
         </td>
         <td className="px-6 py-4 text-sm font-light text-gray-900 underline whitespace-nowrap">
-          <Link to={`/user-detail/${login?.uuid}`}>Detail</Link>
+          {/* <Link to={`/user-detail/${login?.uuid}`}>Detail</Link> */}
+          <a href={`/user-detail/${login?.uuid}`}>Detail</a>
         </td>
       </tr>
     );

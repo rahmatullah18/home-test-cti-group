@@ -1,5 +1,5 @@
 import React from "react";
-import { TypePropsTitle } from "./title.test";
+import { TypePropsTitle } from "./typePropsTitle";
 
 export const Title = ({ children }: TypePropsTitle) => {
   return (

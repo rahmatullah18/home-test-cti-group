@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { FormSearch } from "../components/content/home/formSearch/formSearch";
 import { TableUser } from "../components/content/home/tableUser/tableUser";
 import { TypeUser } from "../components/content/userDetail/TypeUser";
+import { Container } from "../components/layout/container/container";
 import { Loading } from "../components/UI/loading/loading";
 import { Pagination } from "../components/UI/pagination/pagination";
 import { SelectNumber } from "../components/UI/selectNumber/selectNumber";
@@ -16,7 +17,7 @@ export const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage, setUsersPerPage] = useState(10);
 
-  const getUsersAPI = async () => {
+  const getUsersAPI = useCallback(async () => {
     setIsLoading(true);
     try {
       const req = await fetch(
@@ -29,7 +30,7 @@ export const Home = () => {
       console.log(error);
     }
     setIsLoading(false);
-  };
+  }, []);
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
@@ -56,7 +57,7 @@ export const Home = () => {
 
   useEffect(() => {
     getUsersAPI();
-  }, []);
+  }, [getUsersAPI]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -70,24 +71,28 @@ export const Home = () => {
   };
 
   return (
-    <div className="relative flex flex-col space-y-4 ">
-      {isLoading && <Loading />}
-      <div className="flex items-center justify-between">
-        <Title>Table Users</Title>
-        <FormSearch
-          value={search}
-          handleOnChange={(e) => setSearch(e.target.value)}
-        />
+    <Container>
+      {/* <LoginMiddleware> */}
+      <div className="relative flex flex-col space-y-4 ">
+        {isLoading && <Loading />}
+        <div className="flex items-center justify-between">
+          <Title>Table Users</Title>
+          <FormSearch
+            value={search}
+            handleOnChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+        <TableUser users={currentUsers} />
+        <div className="flex items-center justify-between pb-10">
+          <SelectNumber handleUserPage={handleUserPage} />
+          <Pagination
+            usersPerPage={usersPerPage}
+            totalUsers={filteredUsers.length}
+            paginate={paginate}
+          />
+        </div>
       </div>
-      <TableUser users={currentUsers} />
-      <div className="flex items-center justify-between pb-10">
-        <SelectNumber handleUserPage={handleUserPage} />
-        <Pagination
-          usersPerPage={usersPerPage}
-          totalUsers={filteredUsers.length}
-          paginate={paginate}
-        />
-      </div>
-    </div>
+      {/* </LoginMiddleware> */}
+    </Container>
   );
 };

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { TypeUser } from "../components/content/userDetail/TypeUser";
 import { UserDetail } from "../components/content/userDetail/userDetail";
+import { Container } from "../components/layout/container/container";
 import { Loading } from "../components/UI/loading/loading";
 
 export const Detail = () => {
@@ -9,7 +10,7 @@ export const Detail = () => {
   const [user, setUser] = useState<TypeUser>();
 
   const [isLoading, setIsLoading] = useState(false);
-  const getUserAPI = async () => {
+  const getUserAPI = useCallback(async () => {
     setIsLoading(true);
     try {
       const req = await fetch(
@@ -24,15 +25,23 @@ export const Detail = () => {
       console.log(error);
     }
     setIsLoading(false);
-  };
+  }, [userId]);
 
   useEffect(() => {
     getUserAPI();
-  }, []);
+  }, [getUserAPI]);
 
   if (isLoading) {
-    return <Loading />;
+    return (
+      <Container>
+        <Loading />
+      </Container>
+    );
   }
 
-  return <UserDetail user={user} />;
+  return (
+    <Container>
+      <UserDetail user={user} />
+    </Container>
+  );
 };
