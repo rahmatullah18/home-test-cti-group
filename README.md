@@ -37,6 +37,12 @@ Jalankan program
   yarn start
 ```
 
+Jalankan Testing
+
+```bash
+  yarn test
+```
+
 Login
 
 ```bash
