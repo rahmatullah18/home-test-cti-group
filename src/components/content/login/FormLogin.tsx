@@ -9,8 +9,9 @@ import { InputText } from "../../UI/inputText/inputText";
 import { Loading } from "../../UI/loading/loading";
 
 export const FormLogin = () => {
-  // context
+  // context login
   const ctxLogin = useContext(AuthContext);
+
   const [formIsValid, setFormIsValid] = useState<boolean | null>(false);
   const [isLoading, setIsLoading] = useState(false);
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
@@ -56,11 +57,14 @@ export const FormLogin = () => {
     e.preventDefault();
     setIsLoading(true);
     setTimeout(() => {
+      // email dan password di eksekusi di contextLogin menggunakan function onLogin yang ada di context
       ctxLogin.onLogin(emailState.value, passwordState.value);
+      // kosongkan input email
       dispatchEmail({
         type: "USER_INPUT",
         val: "",
       });
+      // kosongkan input password
       dispatchPassword({
         type: "USER_INPUT",
         val: "",

@@ -14,8 +14,20 @@ export const Home = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
+
+  // menyimpan halaman saat ini
   const [currentPage, setCurrentPage] = useState(1);
+  // data per- halaman
   const [usersPerPage, setUsersPerPage] = useState(10);
+
+  // index terakhir
+  const indexOfLastUser = currentPage * usersPerPage;
+  // index pertama
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  // daftar pengguna yang telah di slice dari index pertama sampai index terakhir
+  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+  // function untuk setCurrentPage menjadi halaman yang berbeda
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   const getUsersAPI = useCallback(async () => {
     setIsLoading(true);
@@ -32,11 +44,7 @@ export const Home = () => {
     setIsLoading(false);
   }, []);
 
-  const indexOfLastUser = currentPage * usersPerPage;
-  const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
+  // filter user, akan return nama | email | id | gender
   const filterUsers = useCallback(
     (users: TypeUser[]) => {
       return users.filter((user) => {
@@ -72,19 +80,23 @@ export const Home = () => {
 
   return (
     <Container>
-      {/* <LoginMiddleware> */}
       <div className="relative flex flex-col space-y-4 ">
         {isLoading && <Loading />}
         <div className="flex items-center justify-between">
+          {/* title */}
           <Title>Table Users</Title>
+          {/* search */}
           <FormSearch
             value={search}
             handleOnChange={(e) => setSearch(e.target.value)}
           />
         </div>
+        {/* table users */}
         <TableUser users={currentUsers} />
         <div className="flex items-center justify-between pb-10">
+          {/* select */}
           <SelectNumber handleUserPage={handleUserPage} />
+          {/* pagination */}
           <Pagination
             usersPerPage={usersPerPage}
             totalUsers={filteredUsers.length}
@@ -92,7 +104,6 @@ export const Home = () => {
           />
         </div>
       </div>
-      {/* </LoginMiddleware> */}
     </Container>
   );
 };

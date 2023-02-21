@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { TypeUser } from "../components/content/userDetail/TypeUser";
 import { UserDetail } from "../components/content/userDetail/userDetail";
@@ -31,6 +31,7 @@ export const Detail = () => {
     getUserAPI();
   }, [getUserAPI]);
 
+  // jika loading
   if (isLoading) {
     return (
       <Container>

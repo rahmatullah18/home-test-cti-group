@@ -6,17 +6,19 @@ export const Pagination = ({
   paginate,
 }: TypePropsPagination) => {
   const pageNumbers = [];
+
+  // menambahkan nomor pada page number
   for (let i = 1; i <= Math.ceil(totalUsers / usersPerPage); i++) {
     pageNumbers.push(i);
   }
   return (
     <div className="flex justify-end ">
-      <ul className="flex space-x-2 items-center ">
+      <ul className="flex items-center space-x-2 ">
         {pageNumbers.map((number) => (
           <li key={number}>
             <button
               onClick={() => paginate(number)}
-              className="p-1 px-2 border w-fit h-fit bg-primary2 rounded-md text-primary1 font-semibold "
+              className="p-1 px-2 font-semibold border rounded-md w-fit h-fit bg-primary2 text-primary1 "
             >
               {number}
             </button>

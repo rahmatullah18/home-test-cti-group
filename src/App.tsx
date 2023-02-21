@@ -9,9 +9,9 @@ function App() {
   return (
     <LoginMiddleware>
       <Routes>
-        <Route path="/portfolio" element={<Portfolio />}></Route>
-        <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/portfolio" element={<Portfolio />}></Route>
         <Route path="/user-detail/:userId" element={<Detail />} />
       </Routes>
     </LoginMiddleware>

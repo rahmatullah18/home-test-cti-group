@@ -1,9 +1,10 @@
 import { TypePropsTableUsers } from "./typePropsTableUsers";
-// import { Link } from "react-router-dom";
 
+// data head table
 const headTable = ["Id", "nama", "email", "gender", "action"];
 
 export const TableUser = ({ users }: TypePropsTableUsers) => {
+  // function looping data head
   const mapHeadTable = headTable.map((data, idx) => (
     <th
       key={idx}
@@ -14,6 +15,7 @@ export const TableUser = ({ users }: TypePropsTableUsers) => {
     </th>
   ));
 
+  // function loopinng data user
   const mapDataTable = users.map((data) => {
     const { id, gender, email, name, login } = data;
     return (
